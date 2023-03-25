@@ -1,0 +1,15 @@
+
+@import './typography.scss';
+
+@import './layouts/layout.scss';
+@import './layouts/header.scss';
+@import './layouts/footer.scss';
+
+hr {
+  margin: 1rem auto;
+  border-bottom: 1px solid #0000001c;
+  background: transparent;
+  display: block;
+  color: transparent;
+  height: 0;
+}
