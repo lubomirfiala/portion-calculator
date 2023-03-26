@@ -4,14 +4,14 @@ Calculates weight of food ingredients per serving. You can then use this weights
 
 Ideal if you want to make any kind of mixture like risoto, lasagna, or just some meat with vegetables in one pan. 
 
-## Usage
+### Usage
 In first form type name of your ingredient and weight. It will automaticaly add new rows.
 
 In second form type weight of your servings. 
 
 Sum of servings does not have to be same as sum of ingredients, it will take in account some loses and evaporation.
 
-## limitation
+### limitations
 - Persistence (local storage) is not implemented 
 - Missing reset buttons
 - Missing row removal button
