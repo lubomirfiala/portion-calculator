@@ -2,7 +2,7 @@
 
 Calculates weight of food ingredients per serving. You can then use this weights in your caloric tables.
 
-Ideal if you want to make any kind of mixture like risoto, lasagna, or just some meat with vegetables in one pan. 
+Ideal if you want to make any kind of mixture like risoto, lasagna, or just some meat with vegetables in one pan expecting more than one portion/serving. 
 
 ### Usage
 In first form type name of your ingredient and weight. It will automaticaly add new rows.
