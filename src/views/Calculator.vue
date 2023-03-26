@@ -3,12 +3,19 @@
     <Inputs
         :inputs="inputs"
         :input-weight="inputWeight"
+        @change="persistToLocalStorage"
     />
     <hr>
     <Portions
         :portions="portions"
         :portions-weight="portionsWeight"
+        @change="persistToLocalStorage"
     />
+    <hr>
+    <div class="text-center">
+      <v-btn small @click="resetForm" color="primary">Reset forms</v-btn>
+
+    </div>
     <hr>
     <Results
      :results="results"
@@ -54,9 +61,6 @@ export default {
       }
       return data;
     },
-    ioRatio() {
-      return this.inputWeight / this.portionsWeight;
-    },
     inputWeight() {
       let weight = 0;
       for (const row of this.inputs) {
@@ -79,8 +83,33 @@ export default {
   created() {
     this.resetInputs();
     this.resetPortions();
+    this.loadFromLocalStorage();
   },
   methods: {
+    resetForm() {
+      this.resetInputs();
+      this.resetPortions();
+      this.persistToLocalStorage();
+    },
+    persistToLocalStorage() {
+      console.log('persist');
+      const data = {
+        inputs: this.inputs,
+        portions: this.portions,
+      };
+      window.localStorage.setItem('page-data', JSON.stringify(data));
+    },
+    loadFromLocalStorage() {
+      try {
+        const data = JSON.parse(window.localStorage.getItem('page-data'));
+        if(data) {
+          this.inputs = data.inputs;
+          this.portions = data.portions;
+        }
+      } catch (e) {
+        this.persistToLocalStorage();
+      }
+    },
     resetPortions() {
       this.portions = [
         {

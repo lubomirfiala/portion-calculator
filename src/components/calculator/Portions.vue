@@ -18,6 +18,8 @@
             variant="outlined"
             density="compact"
             type="number"
+            @change="onChange"
+            @input="onChange"
         />
       </div>
     </div>
@@ -56,6 +58,11 @@ export default {
         // eslint-disable-next-line vue/no-mutating-props
         this.portions.push({ weight: null });
       }
+    }
+  },
+  methods: {
+    onChange() {
+      this.$emit('change');
     }
   },
 };

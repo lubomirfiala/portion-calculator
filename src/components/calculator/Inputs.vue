@@ -14,6 +14,8 @@
             v-model="row.food"
             variant="outlined"
             density="compact"
+            @change="onChange"
+            @input="onChange"
         />
       </div>
       <div>
@@ -22,6 +24,8 @@
             variant="outlined"
             density="compact"
             type="number"
+            @change="onChange"
+            @input="onChange"
         />
       </div>
     </div>
@@ -60,6 +64,11 @@ export default {
         // eslint-disable-next-line vue/no-mutating-props
         this.inputs.push({ food: null, weight: null });
       }
+    }
+  },
+  methods: {
+    onChange() {
+      this.$emit('change');
     }
   },
 };
