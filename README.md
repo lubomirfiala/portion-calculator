@@ -17,3 +17,11 @@ Sum of servings does not have to be same as sum of ingredients, it will take in 
 - Persistence (local storage) is not implemented 
 - Missing reset buttons
 - Missing row removal button
+
+## Deploy
+`git clone git@github.com:lubomirfiala/portion-calculator.git`  
+`cd portion-calculator`  
+`yarn install`  
+`yarn build` 
+
+built index is then available in `./dist/index.html`
