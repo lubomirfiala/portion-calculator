@@ -33,9 +33,8 @@ export default {
 .grid {
   display: grid;
   gap: 4rem;
-  grid-template-columns: repeat(auto-fill,minmax(25rem,1fr));
+  grid-template-columns: repeat(auto-fill,minmax(20rem,1fr));
   .result {
-
     .info-grid {
       display: grid;
       gap: 1rem;
