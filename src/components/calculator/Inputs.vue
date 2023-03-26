@@ -18,9 +18,10 @@
       </div>
       <div>
         <v-text-field
-            v-model="row.weight"
+            v-model.number="row.weight"
             variant="outlined"
             density="compact"
+            type="number"
         />
       </div>
     </div>

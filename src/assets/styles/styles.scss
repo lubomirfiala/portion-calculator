@@ -1,5 +1,6 @@
 
-@import './typography.scss';
+@import './vuetify/overrides.scss';
+@import './base/typography.scss';
 
 @import './layouts/layout.scss';
 @import './layouts/header.scss';
