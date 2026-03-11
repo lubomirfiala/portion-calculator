@@ -2,6 +2,7 @@
   "name": "servings",
   "version": "0.1.0",
   "private": true,
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 8080",
     "build": "vue-tsc && vite build",
