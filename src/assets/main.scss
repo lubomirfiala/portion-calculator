@@ -1,0 +1,288 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+#app {
+  min-height: 100dvh;
+  padding: 16px;
+}
+
+// --- Layout ---
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+}
+
+.foods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #71717a;
+  padding: 40px 0;
+}
+
+// --- Food Card ---
+
+.food-card {
+  background: #fff;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.food-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e4e4e7;
+  background: #fafafa;
+}
+
+.food-card__body {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.food-card__divider {
+  height: 1px;
+  background: #e4e4e7;
+  margin: 0 8px;
+
+  @media (min-width: 640px) {
+    height: auto;
+    width: 1px;
+    margin: 8px 0;
+    align-self: stretch;
+  }
+}
+
+.food-card__section {
+  padding: 4px 8px;
+
+  @media (min-width: 640px) {
+    &--ingredients {
+      flex: 0 0 auto;
+    }
+
+    &--portions {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
+.food-card__grid {
+  display: grid;
+  align-items: center;
+  font-size: 13px;
+}
+
+.grid-row {
+  display: contents;
+}
+
+.grid-cell {
+  padding: 2px 4px;
+  min-width: 0;
+}
+
+.grid-header {
+  font-size: 11px;
+  color: #71717a;
+  padding: 2px 4px;
+}
+
+.grid-total {
+  display: contents;
+
+  .grid-cell {
+    font-weight: 600;
+    border-top: 1px solid #e4e4e7;
+    padding-top: 4px;
+  }
+}
+
+.input-weight {
+  width: 100%;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+// --- Inputs ---
+
+input[type="text"],
+input[type="number"] {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font: inherit;
+  background: transparent;
+  min-width: 0;
+  width: 100%;
+
+  &:hover {
+    border-color: #d4d4d8;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #a1a1aa;
+    background: #fff;
+  }
+}
+
+input[type="number"] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.input-name--food {
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+}
+
+// --- Buttons ---
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid #d4d4d8;
+  border-radius: 5px;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #3f3f46;
+
+  &:hover {
+    background: #f4f4f5;
+  }
+}
+
+.btn--primary {
+  background: #18181b;
+  color: #fff;
+  border-color: #18181b;
+
+  &:hover {
+    background: #27272a;
+  }
+}
+
+.btn--danger {
+  color: #dc2626;
+  border-color: transparent;
+  background: transparent;
+
+  &:hover {
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+}
+
+.btn--icon {
+  padding: 2px 5px;
+  font-size: 13px;
+  line-height: 1;
+  border-color: transparent;
+  background: transparent;
+  color: #a1a1aa;
+
+  &:hover {
+    color: #dc2626;
+    background: #fef2f2;
+  }
+}
+
+// --- Portion items ---
+
+.portions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 4px;
+}
+
+.portions-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-weight: 600;
+  font-size: 13px;
+  border-top: 1px solid #e4e4e7;
+  font-variant-numeric: tabular-nums;
+}
+
+.portion-item__row {
+  display: grid;
+  grid-template-columns: 1fr 72px 24px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.portion-item__ingredients {
+  margin: 0 4px 4px;
+}
+
+.portion-ingredient-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  padding: 1px 4px;
+  min-width: 0;
+}
+
+.portion-ingredient-name {
+  font-size: 11px;
+  color: #71717a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.portion-ingredient-row .result-value {
+  font-size: 11px;
+}
+
+// --- Result cell ---
+
+.result-value {
+  font-variant-numeric: tabular-nums;
+  color: #3f3f46;
+}
+
+.result-value--null {
+  color: #d4d4d8;
+}
