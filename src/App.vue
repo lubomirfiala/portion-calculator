@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useFoodsStore } from '@/stores/foods'
 import FoodCard from '@/components/FoodCard.vue'
+import EmptyState from '@/components/EmptyState.vue'
 
 const { t } = useI18n()
 const store = useFoodsStore()
@@ -15,9 +16,7 @@ const { foods } = storeToRefs(store)
     <button class="btn btn--primary" @click="store.addFood()">{{ t('addFood') }}</button>
   </div>
 
-  <div v-if="foods.length === 0" class="empty-state">
-    {{ t('noFoods') }}
-  </div>
+  <EmptyState v-if="foods.length === 0" />
 
   <div v-else class="foods-list">
     <FoodCard v-for="food in foods" :key="food.id" :food="food" />
