@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Food, Ingredient, Portion } from '@/types'
+import { ulid } from 'ulidx'
 
-const uid = () => crypto.randomUUID()
+const uid = () => ulid()
 
 export const useFoodsStore = defineStore('foods', () => {
   const foods = ref<Food[]>([])
