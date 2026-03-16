@@ -76,73 +76,75 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .food-card__header {
-  background: #ffffff;
+  background: $color-white;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 10px 12px;
+  gap: 0.25rem;
+  padding: 0.625rem $card-padding-x;
   position: relative;
-  border-radius: 10px 10px 0 0;
+  border-radius: $radius $radius 0 0;
 
   &.collapsed {
-    border-radius: 10px;
+    border-radius: $radius;
   }
 
   .food-name-input {
     flex: 1;
     min-width: 0;
     border: 1px solid transparent;
-    border-radius: 6px;
-    padding: 2px 6px;
+    border-radius: $radius;
+    padding: 0.125rem 0.375rem;
     font: inherit;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 0.9375rem;
     background: transparent;
-    color: #18181b;
+    color: $color-text;
 
     &::placeholder {
-      color: #b4b4b8;
+      color: $color-placeholder;
       font-weight: 400;
     }
 
     &:hover {
-      border-color: #d4d4d8;
+      border-color: $color-border-hover;
     }
 
     &:focus {
       outline: none;
-      border-color: #a1a1aa;
+      border-color: $color-muted;
       background: #fafafa;
     }
   }
 
   .dots-menu {
     position: absolute;
-    right: 44px;
-    top: calc(100% + 2px);
-    background: #fff;
-    border: 1px solid #e2e2e6;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    right: 2.75rem;
+    top: calc(100% + 0.125rem);
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
     z-index: 100;
     overflow: hidden;
-    min-width: 120px;
+    min-width: 7.5rem;
 
     &__item {
       display: block;
       width: 100%;
-      padding: 8px 14px;
+      padding: $card-padding-y 0.875rem;
       border: none;
       background: transparent;
       font: inherit;
-      font-size: 13px;
+      font-size: $font-size-sm;
       text-align: left;
       cursor: pointer;
-      color: #dc2626;
+      color: $color-danger;
 
       &:hover {
-        background: #fef2f2;
+        background: $color-danger-bg;
       }
     }
   }

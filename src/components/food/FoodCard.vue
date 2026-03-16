@@ -36,12 +36,14 @@ const collapsed = computed(() => isCollapsed(food.value));
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .food-card {
-  border-radius: 12px;
+  border-radius: $radius;
   overflow: visible;
 
   &__body {
-    border-top: 1px solid #e8e8ea;
+    border-top: 1px solid $color-border-light;
     display: flex;
     flex-direction: column;
   }

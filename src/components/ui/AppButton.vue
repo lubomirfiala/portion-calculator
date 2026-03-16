@@ -21,6 +21,8 @@ const { size, variant } = toRefs(props);
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .app-btn {
   display: flex;
   align-items: center;
@@ -28,7 +30,7 @@ const { size, variant } = toRefs(props);
   border: none;
   background: transparent;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: $radius;
   line-height: 1;
   flex-shrink: 0;
   padding: 0;
@@ -37,30 +39,30 @@ const { size, variant } = toRefs(props);
   &--md {
     width: 2.25rem;
     height: 2.25rem;
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   &--sm {
     width: 2rem;
     height: 2rem;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   &--ghost {
-    color: #a1a1aa;
+    color: $color-muted;
 
     &:hover {
-      background: #f4f4f5;
-      color: #52525b;
+      background: $color-surface-hover;
+      color: $color-secondary;
     }
   }
 
   &--icon {
-    color: #c4c4c8;
+    color: $color-icon;
 
     &:hover {
-      color: #dc2626;
-      background: #fef2f2;
+      color: $color-danger;
+      background: $color-danger-bg;
     }
   }
 }

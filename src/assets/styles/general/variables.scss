@@ -2,23 +2,32 @@
 $color-bg: #eaeaec;
 $color-text: #18181b;
 $color-text-muted: #8a8a8e;
+$color-text-subtle: #3f3f46;
+$color-secondary: #52525b;
 $color-border: #e2e2e6;
 $color-border-light: #e8e8ea;
+$color-border-hover: #d4d4d8;
 $color-placeholder: #b4b4b8;
 $color-white: #fff;
+$color-muted: #a1a1aa;
+$color-icon: #c4c4c8;
+$color-icon-dim: #71717a;
+$color-ui-dark: #27272a;
+$color-surface-hover: #f4f4f5;
 $color-brand: #1868b2;
 $color-danger: #dc2626;
 $color-danger-bg: #fef2f2;
 
 // Typography
 $font-family: 'Roboto', system-ui, -apple-system, sans-serif;
-$font-size-base: 14px;
-$font-size-sm: 13px;
-$font-size-xs: 11px;
-$font-size-2xs: 10px;
+$font-size-base: 0.875rem;
+$font-size-sm: 0.8125rem;
+$font-size-xs: 0.6875rem;
+$font-size-2xs: 0.625rem;
 
 // Spacing
-$app-padding: 16px;
-$card-radius: 12px;
-$card-padding-x: 12px;
-$card-padding-y: 8px;
+$app-padding: 1rem;
+$radius: 0.8rem;
+$gap: 0.5rem;
+$card-padding-x: 0.75rem;
+$card-padding-y: 0.5rem;

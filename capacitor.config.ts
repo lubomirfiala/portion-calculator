@@ -9,6 +9,14 @@ const config: CapacitorConfig = {
     url: 'http://localhost:8103',
     cleartext: true,
   },
+  plugins: {
+    SplashScreen: {
+      launchAutoHide: false,
+      backgroundColor: '#1868b2',
+      androidSplashResourceName: 'splash',
+      showSpinner: false,
+    },
+  },
 }
 
 export default config

@@ -5,7 +5,7 @@ import { useFoodsStore } from '@/stores/foods';
 import type { Food } from '@/types';
 import AppButton from '@/components/ui/AppButton.vue';
 import AppInput from '@/components/ui/AppInput.vue';
-import TextIconButton from '@/components/ui/TextIconButton.vue';
+
 
 const props = defineProps({
   food: { type: Object as PropType<Food>,
@@ -77,64 +77,67 @@ function fmt(value: number | null): string {
       </div>
     </div>
     <div class="add-portion-row">
-      <TextIconButton
-        :label="t('addPortion')"
-        size="sm"
+      <button
+        class="add-portion-btn"
         @click="addPortion(food)"
-      />
+      >
+        {{ t('addPortion') }}
+      </button>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .portions-section {
-  padding-top: 5px;
-  border-top: 1px solid #e8e8ea;
+  padding-top: $gap * .5;
+  border-top: 1px solid $color-border-light;
 
   .portions-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    margin-bottom: 8px;
+    gap: $gap * .5;
+    margin-bottom: $gap;
 
     .portion-card {
-      background: #ffffff;
-      border-radius: 10px;
+      background: $color-white;
+      border-radius: $radius;
       overflow: hidden;
 
       &__header {
         display: grid;
-        grid-template-columns: 1fr 44px auto 2rem;
+        grid-template-columns: 1fr 2.75rem auto 2rem;
         align-items: center;
         gap: 1px;
-        padding: 3px 5px;
+        padding: 0.1875rem 0.3125rem;
       }
 
       &__delete {
         visibility: visible;
-        color: #71717a;
-        font-size: 13px;
+        color: $color-icon-dim;
+        font-size: $font-size-sm;
       }
 
       &__unit {
-        font-size: 13px;
-        color: #a1a1aa;
+        font-size: $font-size-sm;
+        color: $color-muted;
       }
 
       &__ingredients {
-        padding: 2px 8px 6px;
+        padding: 0.125rem $gap 0.375rem;
 
         .portion-ingredient-row {
           display: flex;
           justify-content: space-between;
           align-items: baseline;
           padding: 1px 0;
-          gap: 4px;
+          gap: 0.25rem;
           min-width: 0;
 
           .portion-ingredient-name {
-            font-size: 11px;
-            color: #8a8a8e;
+            font-size: $font-size-xs;
+            color: $color-text-muted;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -143,14 +146,14 @@ function fmt(value: number | null): string {
           }
 
           .portion-ingredient-value {
-            font-size: 11px;
+            font-size: $font-size-xs;
             font-variant-numeric: tabular-nums;
-            color: #3f3f46;
+            color: $color-text-subtle;
             white-space: nowrap;
             flex-shrink: 0;
 
             &--null {
-              color: #d4d4d8;
+              color: $color-border-hover;
             }
           }
         }
@@ -161,6 +164,22 @@ function fmt(value: number | null): string {
   .add-portion-row {
     display: flex;
     justify-content: center;
+
+    .add-portion-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      font-size: $font-size-sm;
+      color: $color-muted;
+      padding: 0.25rem $gap;
+      border-radius: $radius;
+
+      &:hover {
+        color: $color-secondary;
+        background: $color-surface-hover;
+      }
+    }
   }
 }
 </style>

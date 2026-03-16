@@ -62,21 +62,23 @@ watchEffect(() => {
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .ingredients-section {
-  background: #ffffff;
-  padding: 8px 12px 10px;
-  border-radius: 0 0 10px 10px;
+  background: $color-white;
+  padding: $gap $card-padding-x;
+  border-radius: 0 0 $radius $radius;
 
   .ingredient-row {
     display: grid;
-    grid-template-columns: 1fr 60px auto 2rem;
+    grid-template-columns: 1fr 3.75rem auto 2rem;
     align-items: center;
-    gap: 2px;
+    gap: 0.125rem;
     min-width: 0;
 
     &__unit {
-      font-size: 13px;
-      color: #a1a1aa;
+      font-size: $font-size-sm;
+      color: $color-muted;
     }
 
     .app-btn {
@@ -88,21 +90,21 @@ watchEffect(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 4px;
-    padding-top: 6px;
-    border-top: 1px solid #e8e8ea;
+    margin-top: 0.25rem;
+    padding-top: 0.375rem;
+    border-top: 1px solid $color-border-light;
 
     &__label {
-      font-size: 10px;
-      color: #a1a1aa;
+      font-size: $font-size-2xs;
+      color: $color-muted;
       letter-spacing: 0.2px;
     }
 
     &__value {
-      font-size: 13px;
+      font-size: $font-size-sm;
       font-weight: 600;
       font-variant-numeric: tabular-nums;
-      color: #18181b;
+      color: $color-text;
     }
   }
 }

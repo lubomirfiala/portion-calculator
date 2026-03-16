@@ -15,7 +15,7 @@ body {
 #app {
   min-height: 100dvh;
   padding: $app-padding;
-  padding-top: calc(#{$app-padding} + env(safe-area-inset-top));
+  padding-top: 0;
   padding-bottom: calc(#{$app-padding} + env(safe-area-inset-bottom));
   max-width: 80rem;
   margin: 0 auto;
@@ -23,18 +23,18 @@ body {
 
 .foods-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  column-gap: 10px;
-  row-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  column-gap: $gap;
+  row-gap: $gap;
 
   &--open {
-    row-gap: 20px;
+    row-gap: 1.25rem;
   }
 }
 
 .empty-state {
   text-align: center;
   color: $color-text-muted;
-  padding: 48px 0;
+  padding: 3rem 0;
   font-size: $font-size-base;
 }

@@ -26,6 +26,8 @@ const { label, icon, size } = toRefs(props);
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .text-icon-btn {
   display: flex;
   align-items: center;
@@ -33,19 +35,19 @@ const { label, icon, size } = toRefs(props);
   background: transparent;
   cursor: pointer;
   font: inherit;
-  color: #52525b;
-  border-radius: 6px;
+  color: $color-secondary;
+  border-radius: $radius;
 
   &:hover &__circle {
-    background: #3f3f46;
+    background: $color-text-subtle;
   }
 
   &__circle {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #27272a;
-    color: #fff;
+    background: $color-ui-dark;
+    color: $color-white;
     border-radius: 50%;
     font-weight: 300;
     line-height: 1;
@@ -53,30 +55,30 @@ const { label, icon, size } = toRefs(props);
   }
 
   &--md {
-    gap: 8px;
-    font-size: 14px;
-    padding: 6px 0;
+    gap: $gap;
+    font-size: $font-size-base;
+    padding: 0.375rem 0;
 
     .text-icon-btn__circle {
       width: 2.25rem;
       height: 2.25rem;
-      font-size: 20px;
+      font-size: 1.25rem;
     }
   }
 
   &--sm {
-    gap: 6px;
-    font-size: 13px;
-    padding: 4px 8px;
+    gap: $gap;
+    font-size: $font-size-sm;
+    padding: 0.25rem $gap;
 
     &:hover {
-      background: #f4f4f5;
+      background: $color-surface-hover;
     }
 
     .text-icon-btn__circle {
       width: 2rem;
       height: 2rem;
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 }

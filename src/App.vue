@@ -18,9 +18,17 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
     <TextIconButton
       :label="t('addFood')"
       size="md"
+      class="app-header__add-btn"
       @click="store.addFood()"
     />
   </div>
+
+  <button
+    class="fab"
+    @click="store.addFood()"
+  >
+    <span class="mdi mdi-plus" />
+  </button>
 
   <EmptyState v-if="foods.length === 0" />
 
@@ -49,20 +57,62 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
-  padding: 0 4px;
+  margin-inline: -$app-padding;
+  padding: calc(#{$app-padding} + env(safe-area-inset-top)) $app-padding $app-padding;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+  background: rgba(234, 234, 236, 0.2);
+}
+
+.fab {
+  display: none;
+
+  @media (max-width: 600px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: calc(env(-apple-system-corner-radius, 3.5rem) - 1.75rem);
+    right: calc(env(-apple-system-corner-radius, 3.5rem) - 1.75rem);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    border: none;
+    background: $color-ui-dark;
+    color: $color-white;
+    font-size: 1.75rem;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: $color-text-subtle;
+    }
+  }
+}
+
+.app-header__add-btn {
+  @media (max-width: 600px) {
+    display: none;
+  }
 }
 
 .foods-section-header {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #8e8e93;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 30px 4px 16px;
+  padding: 1.875rem 0.25rem 1rem;
 }
 </style>
