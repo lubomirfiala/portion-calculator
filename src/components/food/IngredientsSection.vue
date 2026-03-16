@@ -69,7 +69,7 @@ watchEffect(() => {
 
   .ingredient-row {
     display: grid;
-    grid-template-columns: 1fr 56px 18px 20px;
+    grid-template-columns: 1fr 60px auto 2rem;
     align-items: center;
     gap: 2px;
     min-width: 0;

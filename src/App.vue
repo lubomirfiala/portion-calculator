@@ -25,7 +25,7 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
   <EmptyState v-if="foods.length === 0" />
 
   <template v-else>
-    <div class="foods-list">
+    <div class="foods-list foods-list--open">
       <FoodCard
         v-for="food in openFoods"
         :key="food.id"
@@ -63,6 +63,6 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
   color: #8e8e93;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 4px 4px 0;
+  padding: 30px 4px 16px;
 }
 </style>

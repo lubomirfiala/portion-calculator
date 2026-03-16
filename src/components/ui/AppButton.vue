@@ -35,15 +35,15 @@ const { size, variant } = toRefs(props);
   font: inherit;
 
   &--md {
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 20px;
   }
 
   &--sm {
-    width: 20px;
-    height: 20px;
-    font-size: 14px;
+    width: 2rem;
+    height: 2rem;
+    font-size: 16px;
   }
 
   &--ghost {

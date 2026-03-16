@@ -4,9 +4,10 @@ input[type="text"],
 input[type="number"] {
   border: 1px solid transparent;
   border-radius: 4px;
-  padding: 2px 4px;
+  padding: 6px 8px;
   font: inherit;
-  font-size: $font-size-sm;
+  font-size: $font-size-base;
+  min-height: 2rem;
   background: transparent;
   min-width: 0;
   width: 100%;

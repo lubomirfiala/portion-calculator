@@ -55,28 +55,28 @@ const { label, icon, size } = toRefs(props);
   &--md {
     gap: 8px;
     font-size: 14px;
-    padding: 4px 0;
+    padding: 6px 0;
 
     .text-icon-btn__circle {
-      width: 28px;
-      height: 28px;
-      font-size: 18px;
+      width: 2.25rem;
+      height: 2.25rem;
+      font-size: 20px;
     }
   }
 
   &--sm {
     gap: 6px;
     font-size: 13px;
-    padding: 2px 8px;
+    padding: 4px 8px;
 
     &:hover {
       background: #f4f4f5;
     }
 
     .text-icon-btn__circle {
-      width: 22px;
-      height: 22px;
-      font-size: 14px;
+      width: 2rem;
+      height: 2rem;
+      font-size: 16px;
     }
   }
 }

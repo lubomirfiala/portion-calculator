@@ -104,7 +104,7 @@ function fmt(value: number | null): string {
 
       &__header {
         display: grid;
-        grid-template-columns: 1fr 36px 14px 16px;
+        grid-template-columns: 1fr 44px auto 2rem;
         align-items: center;
         gap: 1px;
         padding: 3px 5px;
