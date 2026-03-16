@@ -1,0 +1,42 @@
+@use '../general/variables' as *;
+
+input[type="text"],
+input[type="number"] {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font: inherit;
+  font-size: $font-size-sm;
+  background: transparent;
+  min-width: 0;
+  width: 100%;
+
+  &::placeholder {
+    color: $color-placeholder;
+  }
+
+  &:hover {
+    border-color: #d4d4d8;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #a1a1aa;
+    background: $color-white;
+  }
+}
+
+input[type="number"] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

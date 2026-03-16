@@ -1,48 +1,63 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import type { Food, Ingredient, Portion } from '@/types'
 import { ulid } from 'ulidx'
 
 const uid = () => ulid()
 
 export const useFoodsStore = defineStore('foods', () => {
-  const foods = ref<Food[]>([])
+  const openFoods = ref<Food[]>([])
+  const closedFoods = ref<Food[]>([])
+
+  const foods = computed<Food[]>(() => [...openFoods.value, ...closedFoods.value])
 
   function addFood() {
-    foods.value.unshift({
+    openFoods.value.unshift({
       id: uid(),
       name: '',
       ingredients: [{ id: uid(), name: '', weight: null }],
-      portions: [{ id: uid(), name: '', weight: null }]
+      portions: [{ id: uid(), name: '', weight: null }, { id: uid(), name: '', weight: null }]
     })
   }
 
-  function deleteFood(foodId: string) {
-    const idx = foods.value.findIndex(f => f.id === foodId)
-    if (idx !== -1) foods.value.splice(idx, 1)
+  function deleteFood(food: Food) {
+    openFoods.value = openFoods.value.filter(f => f.id !== food.id)
+    closedFoods.value = closedFoods.value.filter(f => f.id !== food.id)
   }
 
-  function addIngredient(foodId: string) {
-    const food = foods.value.find(f => f.id === foodId)
-    if (food) food.ingredients.push({ id: uid(), name: '', weight: null })
+  function toggleCollapse(food: Food) {
+    const inClosed = closedFoods.value.findIndex(f => f.id === food.id)
+    if (inClosed !== -1) {
+      const [f] = closedFoods.value.splice(inClosed, 1)
+      openFoods.value.push(f)
+    } else {
+      const inOpen = openFoods.value.findIndex(f => f.id === food.id)
+      if (inOpen !== -1) {
+        const [f] = openFoods.value.splice(inOpen, 1)
+        closedFoods.value.unshift(f)
+      }
+    }
   }
 
-  function deleteIngredient(foodId: string, ingredientId: string) {
-    const food = foods.value.find(f => f.id === foodId)
-    if (!food) return
-    const idx = food.ingredients.findIndex(i => i.id === ingredientId)
+  function isCollapsed(food: Food): boolean {
+    return closedFoods.value.some(f => f.id === food.id)
+  }
+
+  function addIngredient(food: Food) {
+    food.ingredients.push({ id: uid(), name: '', weight: null })
+  }
+
+  function deleteIngredient(food: Food, ingredient: Ingredient) {
+    const idx = food.ingredients.findIndex(i => i.id === ingredient.id)
     if (idx !== -1) food.ingredients.splice(idx, 1)
   }
 
-  function addPortion(foodId: string) {
-    const food = foods.value.find(f => f.id === foodId)
-    if (food) food.portions.push({ id: uid(), name: '', weight: null })
+  function addPortion(food: Food) {
+    food.portions.push({ id: uid(), name: '', weight: null })
   }
 
-  function deletePortion(foodId: string, portionId: string) {
-    const food = foods.value.find(f => f.id === foodId)
-    if (!food) return
-    const idx = food.portions.findIndex(p => p.id === portionId)
+  function deletePortion(food: Food, portion: Portion) {
+    const idx = food.portions.findIndex(p => p.id === portion.id)
     if (idx !== -1) food.portions.splice(idx, 1)
   }
 
@@ -62,8 +77,12 @@ export const useFoodsStore = defineStore('foods', () => {
 
   return {
     foods,
+    openFoods,
+    closedFoods,
     addFood,
     deleteFood,
+    toggleCollapse,
+    isCollapsed,
     addIngredient,
     deleteIngredient,
     addPortion,
