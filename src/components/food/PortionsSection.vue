@@ -1,35 +1,40 @@
 <script setup lang="ts">
-import { toRefs, computed, type PropType } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useFoodsStore } from '@/stores/foods'
-import type { Food } from '@/types'
-import AppButton from '@/components/ui/AppButton.vue'
-import AppInput from '@/components/ui/AppInput.vue'
-import TextIconButton from '@/components/ui/TextIconButton.vue'
+import { toRefs, computed, type PropType } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useFoodsStore } from '@/stores/foods';
+import type { Food } from '@/types';
+import AppButton from '@/components/ui/AppButton.vue';
+import AppInput from '@/components/ui/AppInput.vue';
+import TextIconButton from '@/components/ui/TextIconButton.vue';
 
 const props = defineProps({
-  food: { type: Object as PropType<Food>, required: true }
-})
-const { food } = toRefs(props)
-const { t } = useI18n()
-const store = useFoodsStore()
-const { addPortion, deletePortion, ingredientInPortion } = store
+  food: { type: Object as PropType<Food>,
+    required: true },
+});
+const { food } = toRefs(props);
+const { t } = useI18n();
+const store = useFoodsStore();
+const { addPortion, deletePortion, ingredientInPortion } = store;
 
 const visibleIngredients = computed(() =>
-  food.value.ingredients.filter(i => i.name.trim() !== '' || (i.weight !== null && i.weight !== 0))
-)
+  food.value.ingredients.filter(i => i.name.trim() !== '' || (i.weight !== null && i.weight !== 0)),
+);
 
 function fmt(value: number | null): string {
-  if (value === null) return '—'
-  const n = Math.round(value * 10) / 10
-  return n % 1 === 0 ? String(n) : n.toFixed(1)
+  if (value === null) return '—';
+  const n = Math.round(value * 10) / 10;
+  return n % 1 === 0 ? String(n) : n.toFixed(1);
 }
 </script>
 
 <template>
   <div class="portions-section">
     <div class="portions-grid">
-      <div class="portion-card" v-for="portion in food.portions" :key="portion.id">
+      <div
+        v-for="portion in food.portions"
+        :key="portion.id"
+        class="portion-card"
+      >
         <div class="portion-card__header">
           <AppInput
             v-model="portion.name"
@@ -49,16 +54,18 @@ function fmt(value: number | null): string {
             tabindex="-1"
             class="portion-card__delete"
             @click="deletePortion(food, portion)"
-          ><span class="mdi mdi-close" /></AppButton>
+          >
+            <span class="mdi mdi-close" />
+          </AppButton>
         </div>
         <div
-          class="portion-card__ingredients"
           v-if="visibleIngredients.length > 0 && portion.weight !== null && portion.weight !== 0"
+          class="portion-card__ingredients"
         >
           <div
-            class="portion-ingredient-row"
             v-for="ingredient in visibleIngredients"
             :key="ingredient.id"
+            class="portion-ingredient-row"
           >
             <span class="portion-ingredient-name">{{ ingredient.name }}</span>
             <span
@@ -70,7 +77,11 @@ function fmt(value: number | null): string {
       </div>
     </div>
     <div class="add-portion-row">
-      <TextIconButton :label="t('addPortion')" size="sm" @click="addPortion(food)" />
+      <TextIconButton
+        :label="t('addPortion')"
+        size="sm"
+        @click="addPortion(food)"
+      />
     </div>
   </div>
 </template>
@@ -88,71 +99,68 @@ function fmt(value: number | null): string {
 
     .portion-card {
       background: #ffffff;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
+
+      &__header {
+        display: grid;
+        grid-template-columns: 1fr 36px 14px 16px;
+        align-items: center;
+        gap: 1px;
+        padding: 3px 5px;
+      }
+
+      &__delete {
+        visibility: visible;
+        color: #71717a;
+        font-size: 13px;
+      }
+
+      &__unit {
+        font-size: 13px;
+        color: #a1a1aa;
+      }
+
+      &__ingredients {
+        padding: 2px 8px 6px;
+
+        .portion-ingredient-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          padding: 1px 0;
+          gap: 4px;
+          min-width: 0;
+
+          .portion-ingredient-name {
+            font-size: 11px;
+            color: #8a8a8e;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            min-width: 0;
+            flex: 1;
+          }
+
+          .portion-ingredient-value {
+            font-size: 11px;
+            font-variant-numeric: tabular-nums;
+            color: #3f3f46;
+            white-space: nowrap;
+            flex-shrink: 0;
+
+            &--null {
+              color: #d4d4d8;
+            }
+          }
+        }
+      }
     }
-
   }
-}
 
-
-
-.portion-card__header {
-  display: grid;
-  grid-template-columns: 1fr 36px 14px 16px;
-  align-items: center;
-  gap: 1px;
-  padding: 3px 5px;
-}
-
-.portion-card__delete {
-  visibility: visible;
-  color: #71717a;
-  font-size: 13px;
-}
-
-.portion-card__unit {
-  font-size: 13px;
-  color: #a1a1aa;
-}
-
-.portion-card__ingredients {
-  padding: 2px 8px 6px;
-}
-
-.portion-ingredient-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 1px 0;
-  gap: 4px;
-  min-width: 0;
-}
-
-.portion-ingredient-name {
-  font-size: 11px;
-  color: #8a8a8e;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
-  flex: 1;
-}
-
-.portion-ingredient-value {
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  color: #3f3f46;
-  white-space: nowrap;
-  flex-shrink: 0;
-
-  &--null {
-    color: #d4d4d8;
+  .add-portion-row {
+    display: flex;
+    justify-content: center;
   }
-}
-
-.add-portion-row {
-  display: flex;
-  justify-content: center;
 }
 </style>

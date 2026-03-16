@@ -9,5 +9,5 @@ export const messages = {
     noFoods: 'No foods yet. Add one to get started.',
     delete: 'Delete',
     collapsed: 'Saved for later',
-  }
-}
+  },
+};

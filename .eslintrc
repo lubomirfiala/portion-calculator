@@ -1,0 +1,111 @@
+{
+  "root": true,
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "plugin:import/typescript"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "vue"
+  ],
+  "rules": {
+    "vue/no-multiple-template-root": "off",
+    "vue/no-unused-vars": "warn",
+    "import/no-unresolved": "error",
+    "import/named": "error",
+    "import/namespace": "error",
+    "import/default": "error",
+    "import/export": "error",
+    "import/no-named-as-default": "error",
+    "import/no-named-as-default-member": "error",
+    "import/no-duplicates": "error",
+    "import/no-mutable-exports": "error",
+    "array-element-newline": ["warn", {
+      "multiline": true,
+      "minItems": 2
+    }],
+    "object-property-newline": ["warn", {
+      "allowAllPropertiesOnSameLine": false,
+      "allowMultiplePropertiesPerLine": false
+    }],
+    "comma-dangle": ["warn", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline"
+    }],
+    "quotes": ["warn", "single"],
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "object-curly-newline": ["error", {"consistent": true}],
+    "object-curly-spacing": "off",
+    "array-bracket-newline": ["warn", { "multiline": true, "minItems": 2 }],
+    "array-bracket-spacing": ["warn", "always", { "arraysInArrays": false, "objectsInArrays": false }],
+    "@typescript-eslint/comma-dangle": ["warn", "always-multiline"],
+    "@typescript-eslint/comma-spacing": ["warn", {"before": false, "after": true}],
+    "@typescript-eslint/func-call-spacing": ["warn", "never"],
+    "@typescript-eslint/indent": ["warn", 2, {"SwitchCase": 1, "MemberExpression": 1, "ignoredNodes": ["Decorator"]}],
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/key-spacing": ["warn", {"beforeColon": false, "afterColon": true}],
+    "@typescript-eslint/keyword-spacing": ["warn", {"before": true, "after": true}],
+    "@typescript-eslint/member-delimiter-style": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-extra-semi": "warn",
+    "@typescript-eslint/no-unused-vars": ["warn", {"argsIgnorePattern": "^_"}],
+    "@typescript-eslint/object-curly-spacing": ["warn", "always", { "objectsInObjects": false, "arraysInObjects": false }],
+    "@typescript-eslint/quotes": ["warn", "single", {"avoidEscape": true}],
+    "@typescript-eslint/semi": ["warn", "always"],
+    "@typescript-eslint/space-before-blocks": ["warn", "always"],
+    "@typescript-eslint/space-before-function-paren": ["warn", {
+      "anonymous": "always",
+      "asyncArrow": "always",
+      "named": "never"
+    }],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "explicit"
+      }
+    ],
+    "@typescript-eslint/space-infix-ops": "warn",
+    "@typescript-eslint/type-annotation-spacing": [
+      "warn",
+      {
+        "before": false,
+        "after": true,
+        "overrides": {"arrow": {"before": true, "after": true}}
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": false,
+        "allowTypedFunctionExpressions": true,
+        "allowHigherOrderFunctions": false,
+        "allowDirectConstAssertionInArrowFunctions": true,
+        "allowConciseArrowFunctionExpressionsStartingWithVoid": false
+      }
+    ],
+    "vue/require-default-prop": "error",
+    "vue/require-prop-types": "error",
+    "vue/prop-name-casing": ["error", "camelCase"],
+    "vue/no-unused-properties": "warn",
+    "vue/require-valid-default-prop": "error",
+    "vue/no-reserved-props": "error",
+    "vue/valid-v-bind": "error",
+    "vue/no-v-html": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    }
+  }
+}

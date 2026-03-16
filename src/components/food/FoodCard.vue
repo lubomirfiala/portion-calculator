@@ -1,27 +1,34 @@
 <script setup lang="ts">
-import { computed, toRefs, type PropType } from 'vue'
-import { storeToRefs } from 'pinia'
-import type { Food } from '@/types'
-import { useFoodsStore } from '@/stores/foods'
-import FoodCardHeader from '@/components/food/FoodCardHeader.vue'
-import IngredientsSection from '@/components/food/IngredientsSection.vue'
-import PortionsSection from '@/components/food/PortionsSection.vue'
+import { computed, toRefs, type PropType } from 'vue';
+import type { Food } from '@/types';
+import { useFoodsStore } from '@/stores/foods';
+import FoodCardHeader from '@/components/food/FoodCardHeader.vue';
+import IngredientsSection from '@/components/food/IngredientsSection.vue';
+import PortionsSection from '@/components/food/PortionsSection.vue';
 
 const props = defineProps({
-  food: { type: Object as PropType<Food>, required: true }
-})
-const { food } = toRefs(props)
+  food: { type: Object as PropType<Food>,
+    required: true },
+});
+const { food } = toRefs(props);
 
-const store = useFoodsStore()
-const { isCollapsed, toggleCollapse } = store
+const store = useFoodsStore();
+const { isCollapsed, toggleCollapse } = store;
 
-const collapsed = computed(() => isCollapsed(food.value))
+const collapsed = computed(() => isCollapsed(food.value));
 </script>
 
 <template>
   <div class="food-card">
-    <FoodCardHeader :food="food" :collapsed="collapsed" @toggle-collapse="toggleCollapse(food)" />
-    <div v-if="!collapsed" class="food-card__body">
+    <FoodCardHeader
+      :food="food"
+      :collapsed="collapsed"
+      @toggle-collapse="toggleCollapse(food)"
+    />
+    <div
+      v-if="!collapsed"
+      class="food-card__body"
+    >
       <IngredientsSection :food="food" />
       <PortionsSection :food="food" />
     </div>
@@ -32,11 +39,11 @@ const collapsed = computed(() => isCollapsed(food.value))
 .food-card {
   border-radius: 12px;
   overflow: visible;
-}
 
-.food-card__body {
-  border-top: 1px solid #e8e8ea;
-  display: flex;
-  flex-direction: column;
+  &__body {
+    border-top: 1px solid #e8e8ea;
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>
