@@ -4,8 +4,8 @@ import { useI18n } from 'vue-i18n';
 import { useFoodsStore } from '@/stores/foods';
 import FoodCard from '@/components/food/FoodCard.vue';
 import EmptyState from '@/components/app/EmptyState.vue';
-import TextIconButton from '@/components/ui/TextIconButton.vue';
-import AppLogo from '@/components/ui/AppLogo.vue';
+import AppHeader from '@/components/app/AppHeader.vue';
+import MobileHeader from '@/components/app/MobileHeader.vue';
 
 const { t } = useI18n();
 const store = useFoodsStore();
@@ -13,15 +13,8 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
 </script>
 
 <template>
-  <div class="app-header">
-    <AppLogo />
-    <TextIconButton
-      :label="t('addFood')"
-      size="md"
-      class="app-header__add-btn"
-      @click="store.addFood()"
-    />
-  </div>
+  <AppHeader />
+  <MobileHeader />
 
   <button
     class="fab"
@@ -59,21 +52,6 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
 <style lang="scss">
 @use '@/assets/styles/general/variables' as *;
 
-.app-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-inline: -$app-padding;
-  padding: calc(#{$app-padding} + env(safe-area-inset-top)) $app-padding $app-padding;
-  margin-bottom: 1rem;
-  backdrop-filter: blur(0.5rem);
-  -webkit-backdrop-filter: blur(0.5rem);
-  background: rgba(234, 234, 236, 0.2);
-}
-
 .fab {
   display: none;
 
@@ -88,7 +66,7 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
     height: 3.5rem;
     border-radius: 50%;
     border: none;
-    background: $color-ui-dark;
+    background: $color-brand;
     color: $color-white;
     font-size: 1.75rem;
     cursor: pointer;
@@ -96,14 +74,8 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
     box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
 
     &:hover {
-      background: $color-text-subtle;
+      background: darken($color-brand, 8%);
     }
-  }
-}
-
-.app-header__add-btn {
-  @media (max-width: 600px) {
-    display: none;
   }
 }
 
