@@ -15,6 +15,16 @@ const props = defineProps({
 const { food, collapsed } = toRefs(props);
 const emit = defineEmits<{ (e: 'toggle-collapse'): void }>();
 
+const nameError = ref(false);
+
+function handleToggleCollapse(): void {
+  if (!collapsed.value && !food.value.name?.trim()) {
+    nameError.value = true;
+    return;
+  }
+  emit('toggle-collapse');
+}
+
 const { t } = useI18n();
 const store = useFoodsStore();
 const { deleteFood } = store;
@@ -44,10 +54,17 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
     class="food-card__header"
     :class="{ collapsed: collapsed}"
   >
+    <span
+      v-if="collapsed"
+      class="food-name-text"
+    >{{ food.name }}</span>
     <AppInput
+      v-else
       v-model="food.name"
       class="food-name-input"
+      :class="{ error: nameError }"
       :placeholder="t('foodName')"
+      @input="nameError = false"
     />
     <AppButton
       tabindex="-1"
@@ -68,7 +85,7 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
     </div>
     <AppButton
       tabindex="-1"
-      @click="emit('toggle-collapse')"
+      @click="handleToggleCollapse"
     >
       <span :class="collapsed ? 'mdi mdi-chevron-up' : 'mdi mdi-chevron-down'" />
     </AppButton>
@@ -89,6 +106,18 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
 
   &.collapsed {
     border-radius: $radius;
+  }
+
+  .food-name-text {
+    flex: 1;
+    min-width: 0;
+    padding: 0.125rem 0.375rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: $color-text;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .food-name-input {
@@ -116,6 +145,11 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
       outline: none;
       border-color: $color-muted;
       background: #fafafa;
+    }
+
+    &.error {
+      border-color: $color-danger;
+      background: $color-danger-bg;
     }
   }
 

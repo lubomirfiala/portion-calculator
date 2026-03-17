@@ -34,6 +34,6 @@ function onInput(event: Event): void {
     :type="type"
     :value="modelValue ?? ''"
     :placeholder="placeholder"
-    @input="onInput"
+@input="onInput"
   >
 </template>

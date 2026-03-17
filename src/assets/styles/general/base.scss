@@ -16,7 +16,7 @@ body {
   min-height: 100dvh;
   padding: $app-padding;
   padding-top: 0;
-  padding-bottom: calc(#{$app-padding} + env(safe-area-inset-bottom) + 4rem);
+  padding-bottom: calc(env(-apple-system-corner-radius, 3.5rem) - 1.75rem);
   max-width: 80rem;
   margin: 0 auto;
 }

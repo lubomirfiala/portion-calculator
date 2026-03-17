@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRefs, watchEffect, type PropType } from 'vue';
+import { toRefs, type PropType, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useFoodsStore } from '@/stores/foods';
 import type { Food } from '@/types';
@@ -15,12 +15,12 @@ const { t } = useI18n();
 const store = useFoodsStore();
 const { addIngredient, deleteIngredient, totalIngredientWeight } = store;
 
-watchEffect(() => {
+watch(food, () => {
   const allUsed = food.value.ingredients.every(
-    i => i.name.trim() !== '' || (i.weight !== null && i.weight !== 0),
+    i => i.name.trim() !== '' && (i.weight !== null && i.weight !== 0),
   );
   if (allUsed) addIngredient(food.value);
-});
+}, { deep: true });
 </script>
 
 <template>

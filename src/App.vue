@@ -23,7 +23,10 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
     <span class="mdi mdi-plus" />
   </button>
 
-  <EmptyState v-if="foods.length === 0" />
+  <EmptyState
+    v-if="foods.length === 0"
+    @add-food="store.addFood()"
+  />
 
   <template v-else>
     <div class="foods-list foods-list--open">
@@ -46,6 +49,18 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
         :food="food"
       />
     </div>
+    <footer class="app-footer">
+      {{ t('reportBugs') }}
+      <a
+        class="app-footer__github"
+        href="https://github.com/lubomirfiala/portion-calculator"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="mdi mdi-github" />
+        GitHub
+      </a>
+    </footer>
   </template>
 </template>
 
@@ -75,6 +90,30 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
 
     &:hover {
       background: darken($color-brand, 8%);
+    }
+  }
+}
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.375rem;
+  margin-top: 2rem;
+  padding: 0 0 0 1rem;
+  height: 3.5rem;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+
+  &__github {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: $color-brand;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }

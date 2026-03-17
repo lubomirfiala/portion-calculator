@@ -3,20 +3,35 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import AppLogo from '@/components/ui/AppLogo.vue';
 
 const isScrolled = ref(false);
+const viewportOffsetTop = ref(0);
 
 function onScroll(): void {
   const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize);
   isScrolled.value = window.scrollY >= 2 * remPx;
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }));
-onUnmounted(() => window.removeEventListener('scroll', onScroll));
+function onViewportChange(): void {
+  viewportOffsetTop.value = window.visualViewport?.offsetTop ?? 0;
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.visualViewport?.addEventListener('resize', onViewportChange);
+  window.visualViewport?.addEventListener('scroll', onViewportChange);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll);
+  window.visualViewport?.removeEventListener('resize', onViewportChange);
+  window.visualViewport?.removeEventListener('scroll', onViewportChange);
+});
 </script>
 
 <template>
   <div
     class="mobile-header-fixed"
     :class="{ 'mobile-header-fixed--visible': isScrolled }"
+    :style="{ transform: `translateY(${viewportOffsetTop}px)` }"
     aria-hidden="true"
   >
     <AppLogo
