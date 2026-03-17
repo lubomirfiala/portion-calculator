@@ -108,7 +108,7 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
 @use '@/assets/styles/general/variables' as *;
 
 .food-card__header {
-  background: $color-white;
+  background: $color-bg-card;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -156,7 +156,7 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
     &:focus {
       outline: none;
       border-color: $color-muted;
-      background: #fafafa;
+      background: $color-input-focus-bg;
     }
 
     &.error {
@@ -169,7 +169,7 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
     position: absolute;
     right: 2.75rem;
     top: calc(100% + 0.125rem);
-    background: $color-white;
+    background: $color-bg-card;
     border: 1px solid $color-border;
     border-radius: $radius;
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);

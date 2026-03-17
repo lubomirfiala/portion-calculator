@@ -101,7 +101,7 @@ function fmt(value: number | null): string {
     margin-bottom: $gap;
 
     .portion-card {
-      background: $color-white;
+      background: $color-bg-card;
       border-radius: $radius;
       overflow: hidden;
 

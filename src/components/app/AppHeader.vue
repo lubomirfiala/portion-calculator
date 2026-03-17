@@ -39,7 +39,7 @@ function handleAddFood(): void {
   margin-bottom: 1rem;
   backdrop-filter: blur(0.5rem);
   -webkit-backdrop-filter: blur(0.5rem);
-  background: rgba(234, 234, 236, 0.2);
+  background: $color-header-bg;
 
   @media (max-width: 600px) {
     display: none;

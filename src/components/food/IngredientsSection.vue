@@ -65,7 +65,7 @@ watch(food, () => {
 @use '@/assets/styles/general/variables' as *;
 
 .ingredients-section {
-  background: $color-white;
+  background: $color-bg-card;
   padding: $gap $card-padding-x;
   border-radius: 0 0 $radius $radius;
 

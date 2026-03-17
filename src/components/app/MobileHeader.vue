@@ -63,7 +63,7 @@ onUnmounted(() => {
     padding-bottom: 0.5rem;
     backdrop-filter: blur(0.75rem);
     -webkit-backdrop-filter: blur(0.75rem);
-    background: rgba(234, 234, 236, 0.3);
+    background: $color-header-bg-mobile;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease, visibility 0s linear 0.25s;

@@ -15,7 +15,6 @@ const props = defineProps({
 const { color, withText, size } = toRefs(props);
 
 const src = computed(() => color.value === 'white' ? logoWhite : logoBlue);
-const textColor = computed(() => color.value === 'white' ? '#ffffff' : '#1868b2');
 </script>
 
 <template>
@@ -31,7 +30,6 @@ const textColor = computed(() => color.value === 'white' ? '#ffffff' : '#1868b2'
     <span
       v-if="withText"
       class="app-logo__text"
-      :style="{ color: textColor }"
     >
       Portion<br>Calculator
     </span>
@@ -39,6 +37,8 @@ const textColor = computed(() => color.value === 'white' ? '#ffffff' : '#1868b2'
 </template>
 
 <style lang="scss">
+@use '@/assets/styles/general/variables' as *;
+
 .app-logo {
   display: flex;
   align-items: center;
@@ -48,9 +48,11 @@ const textColor = computed(() => color.value === 'white' ? '#ffffff' : '#1868b2'
     width: 2.75rem;
     height: 2.75rem;
     flex-shrink: 0;
+    filter: var(--logo-filter);
   }
 
   &__text {
+    color: $color-logo;
     font-size: 1.0625rem;
     font-weight: 700;
     line-height: 1.2;

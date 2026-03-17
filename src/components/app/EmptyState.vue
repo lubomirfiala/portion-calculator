@@ -72,7 +72,7 @@ const emit = defineEmits<{ (e: 'add-food'): void }>();
     cursor: pointer;
 
     &:hover {
-      background: darken($color-brand, 8%);
+      background: $color-brand-hover;
     }
   }
 

@@ -94,7 +94,7 @@ function handleAddFood(): void {
     box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
 
     &:hover {
-      background: darken($color-brand, 8%);
+      background: $color-brand-hover;
     }
   }
 }
@@ -126,7 +126,7 @@ function handleAddFood(): void {
 .foods-section-header {
   font-size: 0.75rem;
   font-weight: 500;
-  color: #8e8e93;
+  color: $color-section-header;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 1.875rem 0.25rem 1rem;

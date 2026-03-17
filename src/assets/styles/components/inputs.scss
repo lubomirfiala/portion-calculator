@@ -9,6 +9,7 @@ input[type="number"] {
   font-size: $font-size-base;
   min-height: 2rem;
   background: transparent;
+  color: inherit;
   min-width: 0;
   width: 100%;
 
@@ -23,7 +24,7 @@ input[type="number"] {
   &:focus {
     outline: none;
     border-color: $color-muted;
-    background: $color-white;
+    background: $color-bg-card;
   }
 }
 
