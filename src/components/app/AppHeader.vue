@@ -6,6 +6,11 @@ import TextIconButton from '@/components/ui/TextIconButton.vue';
 
 const { t } = useI18n();
 const store = useFoodsStore();
+
+function handleAddFood(): void {
+  store.addFood();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 
 <template>
@@ -14,7 +19,7 @@ const store = useFoodsStore();
     <TextIconButton
       :label="t('addFood')"
       size="md"
-      @click="store.addFood()"
+      @click="handleAddFood"
     />
   </div>
 </template>

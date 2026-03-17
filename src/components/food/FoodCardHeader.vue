@@ -27,13 +27,19 @@ function handleToggleCollapse(): void {
 
 const { t } = useI18n();
 const store = useFoodsStore();
-const { deleteFood } = store;
+const { deleteFood, duplicateFood } = store;
 
 const menuOpen = ref(false);
 
 function toggleMenu(event: Event): void {
   event.stopPropagation();
   menuOpen.value = !menuOpen.value;
+}
+
+function handleDuplicate(): void {
+  menuOpen.value = false;
+  duplicateFood(food.value);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function handleDelete(): void {
@@ -76,6 +82,12 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
       v-if="menuOpen"
       class="dots-menu"
     >
+      <button
+        class="dots-menu__item dots-menu__item--default"
+        @click="handleDuplicate"
+      >
+        {{ t('duplicate') }}
+      </button>
       <button
         class="dots-menu__item"
         @click="handleDelete"
@@ -179,6 +191,14 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick));
 
       &:hover {
         background: $color-danger-bg;
+      }
+
+      &--default {
+        color: $color-text;
+
+        &:hover {
+          background: $color-surface-hover;
+        }
       }
     }
   }

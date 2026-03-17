@@ -34,6 +34,17 @@ export const useFoodsStore = defineStore('foods', () => {
     });
   }
 
+  function duplicateFood(food: Food): void {
+    openFoods.value.unshift({
+      id: uid(),
+      name: food.name,
+      ingredients: food.ingredients.map(i => ({ ...i,
+        id: uid() })),
+      portions: food.portions.map(p => ({ ...p,
+        id: uid() })),
+    });
+  }
+
   function deleteFood(food: Food): void {
     openFoods.value = openFoods.value.filter(f => f.id !== food.id);
     closedFoods.value = closedFoods.value.filter(f => f.id !== food.id);
@@ -98,6 +109,7 @@ export const useFoodsStore = defineStore('foods', () => {
     openFoods,
     closedFoods,
     addFood,
+    duplicateFood,
     deleteFood,
     toggleCollapse,
     isCollapsed,

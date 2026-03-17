@@ -10,6 +10,11 @@ import MobileHeader from '@/components/app/MobileHeader.vue';
 const { t } = useI18n();
 const store = useFoodsStore();
 const { foods, openFoods, closedFoods } = storeToRefs(store);
+
+function handleAddFood(): void {
+  store.addFood();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 
 <template>
@@ -18,14 +23,14 @@ const { foods, openFoods, closedFoods } = storeToRefs(store);
 
   <button
     class="fab"
-    @click="store.addFood()"
+    @click="handleAddFood"
   >
     <span class="mdi mdi-plus" />
   </button>
 
   <EmptyState
     v-if="foods.length === 0"
-    @add-food="store.addFood()"
+    @add-food="handleAddFood"
   />
 
   <template v-else>

@@ -38,9 +38,21 @@ const collapsed = computed(() => isCollapsed(food.value));
 <style lang="scss">
 @use '@/assets/styles/general/variables' as *;
 
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .food-card {
   border-radius: $radius;
   overflow: visible;
+  animation: slide-down 0.25s ease;
 
   &__body {
     border-top: 1px solid $color-border-light;

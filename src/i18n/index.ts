@@ -9,6 +9,7 @@ export const messages = {
     appDescription: 'Do you cook for more than one person? Calculate ingredient amounts per portion quickly, without thinking.',
     noFoods: 'No foods yet. Add one to get started.',
     reportBugs: 'Report bugs on',
+    duplicate: 'Duplicate',
     delete: 'Delete',
     collapsed: 'Saved for later',
   },
